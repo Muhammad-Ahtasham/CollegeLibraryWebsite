@@ -25,6 +25,18 @@ Display.prototype.clear = function(){
     let libraryForm = document.getElementById('libraryForm')
     libraryForm.reset();
 }
+Display.prototype.validate = function(book){
+    if(book.name.lenght<3 || book,author.lenght<3){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+Display.prototype.show = function(){
+     
+}
+
 
 //Adding submit event listener to form
 let libraryForm = document.getElementById('libraryForm');
@@ -51,8 +63,16 @@ function libraryFormSubmit(e){
     let book = new Book(name, author, type)
 
     let display = new Display()
-    display.add(book);
-    display.clear()
+    if(display.validate(book)){
+
+        display.add(book);
+        display.clear();
+        display.show('Success');
+    }
+    else{
+        //show error to the user
+        display.show('Error');
+    }
     console.log(book);
     e.preventDefault();
 }
