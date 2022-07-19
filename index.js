@@ -11,7 +11,16 @@ function Display() {
 }
 
 //Adding methods to display prototypes
-Display.prototype.add = function(){}
+Display.prototype.add = function(book){
+    console.log('adding to the UI');
+    let tableBody = document.getElementById('tableBody');
+    let uiString = `<tr>
+                        <td>${book.name}</td>
+                        <td>${book.author}</td>
+                        <td>@${book.type}</td>
+                    </tr>`;
+    tableBody.innerHTML += uiString;
+}
 Display.prototype.clear = function(){
     let libraryForm = document.getElementById('libraryForm')
     libraryForm.reset();
