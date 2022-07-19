@@ -26,15 +26,24 @@ Display.prototype.clear = function(){
     libraryForm.reset();
 }
 Display.prototype.validate = function(book){
-    if(book.name.lenght<3 || book,author.lenght<3){
+    if(book.name.lenght<2 || book.author.lenght<3){
         return false;
     }
     else{
-        return true;
+        return true ;
     }
 }
-Display.prototype.show = function(){
-     
+Display.prototype.show = function(type, displayMessage){
+     let message = document.getElementById('message');
+     message.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                            <strong>Message!</strong>
+                            ${displayMessage}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>`;
+
+    setTimeout(() => {
+        message.innerHTML = ``;
+    }, 2000);
 }
 
 
@@ -64,14 +73,14 @@ function libraryFormSubmit(e){
 
     let display = new Display()
     if(display.validate(book)){
-
         display.add(book);
         display.clear();
-        display.show('Success');
+        display.show('success', 'Your Book has been added ');
     }
     else{
         //show error to the user
-        display.show('Error');
+        console.log('validate working')
+        display.show('danger', 'Sorry You cannot add this book');
     }
     console.log(book);
     e.preventDefault();
